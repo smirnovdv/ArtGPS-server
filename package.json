@@ -1,8 +1,8 @@
 {
-  "name": "artgps",
+  "name": "artgps-server",
   "version": "1.0.0",
-  "description": "Concept",
-  "main": "app.js",
+  "description": "API server for artGPS app",
+  "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -13,16 +13,15 @@
   "keywords": [
     "art"
   ],
-  "author": "ACC bootcamp team",
+  "author": "Dmitry Smirnov",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/ACCSoftwareBootcamp/ArtGPS/issues"
   },
-  "homepage": "https://github.com/ACCSoftwareBootcamp/ArtGPS#readme",
+  "homepage": "https://github.com/smirnovdv/ArtGPS-server.git",
   "dependencies": {
+    "cors": "^2.8.5",
     "express": "^4.17.1",
-    "pg": "^7.12.1",
-    "traverson": "^6.1.1",
-    "traverson-hal": "^6.1.0"
+    "pg": "^7.12.1"
   }
 }

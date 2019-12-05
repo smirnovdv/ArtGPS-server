@@ -1,7 +1,10 @@
 const express = require('express');
 const app = express();
+var cors = require('cors')
 
 let port = process.env.PORT || 3001;
+
+app.use(cors())
 
 //db connection
 const { Client } = require('pg');
