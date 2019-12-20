@@ -57,6 +57,16 @@ app.get('/get_inspiration',(req,res)=>{
 
 });
 
+app.get('/get_test',(req,res)=>{
+  let query = `SELECT * FROM modern_artists
+               WHERE id = ${req.query.id} OR ${req.query.id+2}
+              ` 
+  client.query(query, function(err, data) {
+    res.send(data.rows);
+  });
+
+});
+
 app.get('/challenge_leaderboard',(req,res)=>{
   let query = `SELECT * FROM users
                LIMIT 5
@@ -69,11 +79,22 @@ app.get('/challenge_leaderboard',(req,res)=>{
 })
 
 app.post('/challenge_leaderboard'),(req,res)=>{
-  challenge_leaderboard  
+  // challenge_leaderboard  
 }
 
 
 app.listen(port, ()=>{
     console.log("Server is running on port 3001")
 })
+
+
+
+
+
+
+
+
+
+
+
 
