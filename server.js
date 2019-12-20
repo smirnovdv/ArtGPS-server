@@ -59,7 +59,7 @@ app.get('/get_inspiration',(req,res)=>{
 
 app.get('/get_test',(req,res)=>{
   let query = `SELECT * FROM modern_artists
-               WHERE id = ${req.query.id} OR ${req.query.id+2}
+               WHERE id = ${req.query.id} OR ${Number(req.query.id) + 2}
               ` 
   client.query(query, function(err, data) {
     res.send(data.rows);
