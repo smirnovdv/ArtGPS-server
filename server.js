@@ -60,7 +60,7 @@ app.get('/get_inspiration',(req,res)=>{
 app.get('/get_test',(req,res)=>{
   let query = `SELECT * FROM modern_artists
                ORDER by random() 
-               LIMIT 2 )
+               LIMIT 2;
               ` 
   console.log(query)
   client.query(query, function(err, data) {
