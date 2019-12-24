@@ -59,7 +59,8 @@ app.get('/get_inspiration',(req,res)=>{
 
 app.get('/get_test',(req,res)=>{
   let query = `SELECT * FROM modern_artists
-               WHERE (id = ${req.query.id}) OR (id = ${Number(req.query.id) + 2})
+               ORDER by random() 
+               LIMIT 2 )
               ` 
   console.log(query)
   client.query(query, function(err, data) {
