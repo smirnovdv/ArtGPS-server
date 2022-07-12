@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 const cors = require('cors')
 const port = process.env.PORT || 3001;
-const auth = require('./auth')
+const auth = process.env.DBPASSWORD || require('./auth')
 
 app.use(cors());
 
