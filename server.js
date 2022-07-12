@@ -17,6 +17,7 @@ const client = new Client({
 });
 
 client.connect(err => {
+  console.log('hi from client connect')
   if (err) {
     console.error('connection error', err.stack)
   } else {
