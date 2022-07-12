@@ -16,9 +16,13 @@ const client = new Client({
   }
 });
 
-client.connect();
-
-
+client.connect(err => {
+  if (err) {
+    console.error('connection error', err.stack)
+  } else {
+    console.log('connected')
+  }
+})
 
 
 
@@ -47,14 +51,13 @@ app.get('/get_inspiration', (req, res) => {
 });
 
 app.get('/get_test', (req, res) => {
-  console.log(client)
   const query = `SELECT * FROM modern_artists
                ORDER by random() 
                LIMIT 2;
               `
   client.query(query, function (err, data) {
     if (err){
-      console.log(err)
+      throw err
     }
     res.send(data.rows);
   });
