@@ -24,7 +24,7 @@ const connectionObject = {
   password:  "4dd279585c4c04103bcddad60519621558658cab606d82b2d030b0ecf2bb7f55" 
 };
 
-const client = new Client(connectionObject);
+const client = new Client()
 client.connect()
   .then(function (returnedData) {
     console.log(`Connected to ${client.database} dB`);
