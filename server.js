@@ -8,30 +8,17 @@ app.use(cors());
 
 
 //db connection
-const {
-  Client
-} = require('pg');
+const { Client } = require('pg');
 
-
-const connectionObject = {
-  host: "ec2-18-211-108-143.compute-1.amazonaws.com",
-  database: "d6j40kiuskmjlo",
+const client = new Client({
+  connectionString: process.env.DATABASE_URL,
   ssl: {
-    rejectUnauthorized: false,
-  },
-  port: 5432,
-  user: "fmqizevnmknwse",
-  password:  "4dd279585c4c04103bcddad60519621558658cab606d82b2d030b0ecf2bb7f55" 
-};
+    rejectUnauthorized: false
+  }
+});
 
-const client = new Client()
-client.connect()
-  .then(function (returnedData) {
-    console.log(`Connected to ${client.database} dB`);
-  })
-  .catch(function (err) {
-    console.error('connection error', err.stack)
-  });
+client.connect();
+
 
 
 
