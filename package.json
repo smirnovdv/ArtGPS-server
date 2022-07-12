@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/smirnovdv/ArtGPS.git"
+    "url": ""
   },
   "keywords": [
     "art"
@@ -22,6 +22,6 @@
   "dependencies": {
     "cors": "^2.8.5",
     "express": "^4.17.1",
-    "pg": "^6.4.15"
+    "pg": "^7.18.2"
   }
 }
