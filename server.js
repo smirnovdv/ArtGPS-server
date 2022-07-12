@@ -7,7 +7,6 @@ const auth = process.env.DBPASSWORD;
 app.use(cors());
 console.log(auth)
 
-HTMLFormControlsCollection.log()
 
 //db connection
 const {
