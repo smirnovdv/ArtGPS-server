@@ -2,18 +2,21 @@ const express = require('express');
 const app = express();
 const cors = require('cors')
 const port = process.env.PORT || 3001;
+const auth = require('./auth')
 
 app.use(cors());
 
 //db connection
 const { Client } = require('pg');
 const connectionObject = {
-  host : "ec2-107-20-239-47.compute-1.amazonaws.com",
-  database : "dcqcqfuvh1n779",
-  ssl: "any", 
+  host : "ec2-18-211-108-143.compute-1.amazonaws.com",
+  database : "d6j40kiuskmjlo",
+  ssl: {
+    rejectUnauthorized: false,
+  }, 
   port : 5432,
-  user : "cxngcbwrxsmpac",
-  password : "80c6f4106a03155d0ef38f3d31039e40590ab4ec34fc6ceba9d7354f473a94e4"
+  user : "fmqizevnmknwse",
+  password : auth.pg_credentials.password
 };
 
 const client = new Client(connectionObject);
@@ -25,13 +28,19 @@ client.connect()
   console.error('connection error', err.stack)
 });
 
+
+
+
 //handling requests
 app.get('/get_challenge',(req,res)=>{
   const query = `SELECT * FROM artworks
                 ORDER BY RANDOM() LIMIT 3
               ` 
   client.query(query, function(err, data) {
-    console.log(err,data.rows);
+    if (err){
+      console.log(err)
+    }
+    console.log(data.rows);
     res.send(data.rows);
   });
 });
@@ -57,9 +66,13 @@ app.get('/get_test',(req,res)=>{
 
 });
 
+app.get('/', (req, res) => {
+  res.send('Welcome To The World Of Art!')
+})
+
 //server setup
 app.listen(port, ()=>{
-    console.log("Server is running on port 3001")
+    console.log(`Server is running on port ${port}`)
 })
 
 
