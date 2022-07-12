@@ -53,6 +53,9 @@ app.get('/get_test', (req, res) => {
                LIMIT 2;
               `
   client.query(query, function (err, data) {
+    if (err){
+      console.log(err)
+    }
     res.send(data.rows);
   });
 
