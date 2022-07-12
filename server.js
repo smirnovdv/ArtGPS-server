@@ -1,10 +1,13 @@
 const express = require('express');
 const app = express();
-const cors = require('cors')
+const cors = require('cors');
 const port = process.env.PORT || 3001;
-//const auth = require('./auth')
+const auth = process.env.DBPASSWORD;
 
 app.use(cors());
+console.log(auth)
+
+HTMLFormControlsCollection.log()
 
 //db connection
 const {
@@ -18,7 +21,7 @@ const connectionObject = {
   },
   port: 5432,
   user: "fmqizevnmknwse",
-  password: process.env.DBPASSWORD// || auth.pg_credentials.password
+  password:  auth// || auth.pg_credentials.password
 };
 
 const client = new Client(connectionObject);
