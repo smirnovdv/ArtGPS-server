@@ -7,37 +7,39 @@ const auth = require('./auth')
 app.use(cors());
 
 //db connection
-const { Client } = require('pg');
+const {
+  Client
+} = require('pg');
 const connectionObject = {
-  host : "ec2-18-211-108-143.compute-1.amazonaws.com",
-  database : "d6j40kiuskmjlo",
+  host: "ec2-18-211-108-143.compute-1.amazonaws.com",
+  database: "d6j40kiuskmjlo",
   ssl: {
     rejectUnauthorized: false,
-  }, 
-  port : 5432,
-  user : "fmqizevnmknwse",
-  password : process.env.DBPASSWORD || auth.pg_credentials.password
+  },
+  port: 5432,
+  user: "fmqizevnmknwse",
+  password: process.env.DBPASSWORD || auth.pg_credentials.password
 };
 
 const client = new Client(connectionObject);
 client.connect()
-.then( function(returnedData) {
-  console.log(`Connected to ${client.database} dB`);
-})
-.catch( function(err) {
-  console.error('connection error', err.stack)
-});
+  .then(function (returnedData) {
+    console.log(`Connected to ${client.database} dB`);
+  })
+  .catch(function (err) {
+    console.error('connection error', err.stack)
+  });
 
 
 
 
 //handling requests
-app.get('/get_challenge',(req,res)=>{
+app.get('/get_challenge', (req, res) => {
   const query = `SELECT * FROM artworks
                 ORDER BY RANDOM() LIMIT 3
-              ` 
-  client.query(query, function(err, data) {
-    if (err){
+              `
+  client.query(query, function (err, data) {
+    if (err) {
       console.log(err)
     }
     console.log(data.rows);
@@ -45,22 +47,22 @@ app.get('/get_challenge',(req,res)=>{
   });
 });
 
-app.get('/get_inspiration',(req,res)=>{
+app.get('/get_inspiration', (req, res) => {
   const query = `SELECT * FROM modern_artists
                  WHERE id = ${req.query.id}
-                ` 
-  client.query(query, function(err, data) {
-    console.log(err,data.rows);
+                `
+  client.query(query, function (err, data) {
+    console.log(err, data.rows);
     res.send(data.rows);
   });
 });
 
-app.get('/get_test',(req,res)=>{
+app.get('/get_test', (req, res) => {
   const query = `SELECT * FROM modern_artists
                ORDER by random() 
                LIMIT 2;
-              ` 
-  client.query(query, function(err, data) {
+              `
+  client.query(query, function (err, data) {
     res.send(data.rows);
   });
 
@@ -71,18 +73,6 @@ app.get('/', (req, res) => {
 })
 
 //server setup
-app.listen(port, ()=>{
-    console.log(`Server is running on port ${port}`)
+app.listen(port, () => {
+  console.log(`Server is running on port ${port}`)
 })
-
-
-
-
-
-
-
-
-
-
-
-
