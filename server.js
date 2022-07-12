@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 const cors = require('cors')
 const port = process.env.PORT || 3001;
-const auth = require('./auth')
+//const auth = require('./auth')
 
 app.use(cors());
 
@@ -18,7 +18,7 @@ const connectionObject = {
   },
   port: 5432,
   user: "fmqizevnmknwse",
-  password: process.env.DBPASSWORD || auth.pg_credentials.password
+  password: process.env.DBPASSWORD// || auth.pg_credentials.password
 };
 
 const client = new Client(connectionObject);
