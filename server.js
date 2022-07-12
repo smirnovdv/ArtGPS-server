@@ -5,13 +5,14 @@ const port = process.env.PORT || 3001;
 const auth = process.env.DBPASSWORD;
 
 app.use(cors());
-console.log(auth)
 
 
 //db connection
 const {
   Client
 } = require('pg');
+
+
 const connectionObject = {
   host: "ec2-18-211-108-143.compute-1.amazonaws.com",
   database: "d6j40kiuskmjlo",
@@ -20,7 +21,7 @@ const connectionObject = {
   },
   port: 5432,
   user: "fmqizevnmknwse",
-  password:  auth// || auth.pg_credentials.password
+  password:  "4dd279585c4c04103bcddad60519621558658cab606d82b2d030b0ecf2bb7f55" 
 };
 
 const client = new Client(connectionObject);
